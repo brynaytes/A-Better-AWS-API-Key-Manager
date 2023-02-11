@@ -1,5 +1,5 @@
 const express = require('express')
-const {UsagePlanManager} = require("../core/UsagePlanManager");
+const { UsagePlanManager } = require("../core/UsagePlanManager");
 const app = express()
 const port = 3000
 
@@ -12,97 +12,80 @@ app.get('/', (req, res) => {
 
 app.get('/apikey', async (req, res) => {
     let key;
-    try {
-        await gate.getApiKeyById(req.query.keyId).then(
-            response => {
-                key = response
+    await gate.getApiKeyById(req.query.keyId).then(
+        response => {
+            key = response;
+            res.status(200);
+            res.type('application/json')
+            res.send({
+                statusCode: 200,
+                apiKey: key
             });
-
-    }catch(err){
-        res.status(500);
-        res.type('application/json')
-        res.send({
-            statusCode: 500,
-            message: err.message
+        }).catch(err => {
+            res.status(500);
+            res.type('application/json')
+            res.send({
+                statusCode: 500,
+                message: err.message
+            });
         });
-    }
-    res.status(200);
-    res.type('application/json')
-    res.send({
-        statusCode: 200,
-        apiKey: key
-    });
-})
+    
+});
 app.get('/apikey/byString', async (req, res) => {
-    let keyInfoList;
-    try {
-        await gate.getApiKeysByName(req.query.name).then(
+        await gate.getApiKeyObjectsByName(req.query.name).then(
             response => {
-                keyInfoList = response
-            });
-
-    }catch(err){
-        res.status(500);
-        res.type('application/json')
-        res.send({
-            statusCode: 500,
-            message: err.message
-        });
-    }
-    res.status(200);
-    res.type('application/json')
-    res.send({
-        statusCode: 200,
-        apiKey: keyInfoList
-    });
+                res.status(200);
+                res.type('application/json')
+                res.send({
+                    statusCode: 200,
+                    apiKeyObjects: response
+                });
+            }).catch(err => {
+                res.status(500);
+                res.type('application/json')
+                res.send({
+                    statusCode: 500,
+                    message: err.message
+                });
+            });   
 })
 
 app.get('/apikey/byStringPart', async (req, res) => {
-    let keyInfoList;
-    try {
-        await gate.getApiKeysByPartialName(req.query.name).then(
+        await gate.getApiKeyObjectsByPartialName(req.query.name).then(
             response => {
-                keyInfoList = response
-            });
-
-    }catch(err){
-        res.status(500);
-        res.type('application/json')
-        res.send({
-            statusCode: 500,
-            message: err.message
-        });
-    }
-    res.status(200);
-    res.type('application/json')
-    res.send({
-        statusCode: 200,
-        apiKey: keyInfoList
-    });
+                res.status(200);
+                res.type('application/json')
+                res.send({
+                    statusCode: 200,
+                    apiKeyObjects: response
+                });
+            }).catch(err =>{
+                res.status(500);
+                res.type('application/json')
+                res.send({
+                    statusCode: 500,
+                    message: err.message
+                });
+            })
 })
 
 app.get('/apikey/byEnabled', async (req, res) => {
-    let keyInfoList;
-    try {
         await gate.getApiKeysByEnabled(req.query.isEnabled === 'true').then(
             response => {
-                keyInfoList = response
+                res.status(200);
+                res.type('application/json')
+                res.send({
+                    statusCode: 200,
+                    apiKeyObjects: response
+                });
+            }).catch(err => {
+                res.status(500);
+                res.type('application/json')
+                res.send({
+                    statusCode: 500,
+                    message: err.message
+                });
             });
-
-    }catch(err){
-        res.status(500);
-        res.type('application/json')
-        res.send({
-            statusCode: 500,
-            message: err.message
-        });
-    }
-    res.status(200);
-    res.type('application/json')
-    res.send({
-        statusCode: 200,
-        apiKey: keyInfoList
-    });
 })
 
 app.listen(port, () => {
