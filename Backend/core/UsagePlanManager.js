@@ -92,6 +92,39 @@ class UsagePlanManager {
         return key;
     }
 
+
+    /*
+    parameters to create an api key. Only 
+
+     params = {
+        customerId: 'STRING_VALUE',                 //Used to associate keys with larger groups
+        description: 'STRING_VALUE',                //Description of the keys purpose
+        enabled: true || false,                     //Sets if key is usable
+        name: 'STRING_VALUE',                       //Name of key
+        stageKeys: [
+            {
+                restApiId: 'STRING_VALUE',
+                stageName: 'STRING_VALUE'
+            },
+        ],
+        value: 'STRING_VALUE'                        //Allows you to set the key's value 
+    };
+    */
+    async createApiKeyByParams(params) {
+        let key;
+        await this.apigateway.createApiKey(params).promise().then(item => key = item).catch(err => { throw err });
+        return key;
+    }
+    async createApiKeyByName(keyName) {
+        let key;
+        let params = {
+            name: keyName,
+            enabled : true
+        };
+        await this.apigateway.createApiKey(params).promise().then(item => key = item).catch(err => { throw err });
+        return key;
+    }
+
 }
 
 exports.UsagePlanManager = UsagePlanManager;
