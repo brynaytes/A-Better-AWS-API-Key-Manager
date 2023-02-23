@@ -126,6 +126,62 @@ app.post('/apikey/create/params', async (req, res) => {
         });
 })
 
+app.get('/usagePlan', async (req, res) => {
+        await gate.getUsagePlanObjectById(req.query.id).then(
+            response => {
+                res.status(200);
+                res.type('application/json')
+                res.send({
+                    statusCode: 200,
+                    usagePlanObject: response
+                });
+            }).catch(err =>{
+                res.status(500);
+                res.type('application/json')
+                res.send({
+                    statusCode: 500,
+                    message: err.message
+                });
+            })
+})
+
+app.get('/allUagePlans', async (req, res) => {
+    await gate.getAllUsagePlanObjects().then(
+        response => {
+            res.status(200);
+            res.type('application/json')
+            res.send({
+                statusCode: 200,
+                usagePlanObjects: response
+            });
+        }).catch(err =>{
+            res.status(500);
+            res.type('application/json')
+            res.send({
+                statusCode: 500,
+                message: err.message
+            });
+        })
+})
+
+app.get('/subscribe', async (req, res) => {
+    await gate.subscribeKeyToPlanWithIds(req.query.keyId, req.query.planId).then(
+        response => {
+            res.status(200);
+            res.type('application/json')
+            res.send({
+                statusCode: 200,
+                usagePlanObjects: response
+            });
+        }).catch(err =>{
+            res.status(500);
+            res.type('application/json')
+            res.send({
+                statusCode: 500,
+                message: err.message
+            });
+        })
+})
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)

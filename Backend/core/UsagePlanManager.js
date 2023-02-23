@@ -125,6 +125,36 @@ class UsagePlanManager {
         return key;
     }
 
+    //gets usage plan object from an id
+    async getUsagePlanObjectById(id) {
+        let usagePlanObject;
+        let params = {
+            usagePlanId : id
+        };
+        await this.apigateway.getUsagePlan(params).promise().then(item => usagePlanObject = item).catch(err => { throw err });
+        return usagePlanObject;
+    }
+
+    //gets all usage plan objects on account
+    async getAllUsagePlanObjects() {
+        let usagePlanObject;
+        let params = {};
+        await this.apigateway.getUsagePlans(params).promise().then(item => usagePlanObject = item.items).catch(err => { throw err });
+        return usagePlanObject;
+    }
+
+    //subscribe key to plan by passiong in api key id and usage plan id 
+    async subscribeKeyToPlanWithIds(keyId, planId){
+            let response;
+            let params = {
+                keyType : "API_KEY",
+                keyId : keyId,
+                usagePlanId : planId
+            };
+            await this.apigateway.createUsagePlanKey(params).promise().then(item => response = item).catch(err => { throw err });
+            return response;
+    }
+
 }
 
 exports.UsagePlanManager = UsagePlanManager;
