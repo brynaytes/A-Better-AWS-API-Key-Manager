@@ -1,5 +1,6 @@
 const express = require('express')
-const { UsagePlanManager } = require("../core/UsagePlanManager");
+const { UsagePlanManager } = require("../../lib/UsagePlanManager");
+
 const app = express()
 const port = 3000
 
