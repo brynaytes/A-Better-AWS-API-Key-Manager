@@ -184,6 +184,44 @@ app.get('/subscribe', async (req, res) => {
         })
 })
 
+app.get('/getUsageDataForPlanByKey', async (req, res) => {
+    await gate.getUsageDataForPlanByKey( req.query.planId, req.query.keyId, req.query.startDate,  req.query.endDate).then(
+        response => {
+            res.status(200);
+            res.type('application/json')
+            res.send({
+                statusCode: 200,
+                usagePlanObjects: response
+            });
+        }).catch(err =>{
+            res.status(500);
+            res.type('application/json')
+            res.send({
+                statusCode: 500,
+                message: err.message
+            });
+        })
+})
+
+app.get('/getUsageDataForPlan', async (req, res) => {
+    await gate.getUsageDataForPlan( req.query.planId, req.query.startDate,  req.query.endDate).then(
+        response => {
+            res.status(200);
+            res.type('application/json')
+            res.send({
+                statusCode: 200,
+                usagePlanObjects: response
+            });
+        }).catch(err =>{
+            res.status(500);
+            res.type('application/json')
+            res.send({
+                statusCode: 500,
+                message: err.message
+            });
+        })
+})
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
 })
