@@ -92,7 +92,7 @@ await gate.getAllUsagePlanObjects()
 ```
 
 ### subscribeKeyToPlanWithIds
-subscribe key to plan by passiong in api key id and usage plan id 
+subscribe key to plan by passing in api key id and usage plan id 
 
 ```javascript
 await gate.subscribeKeyToPlanWithIds("planId","keyId")
@@ -100,7 +100,7 @@ await gate.subscribeKeyToPlanWithIds("planId","keyId")
 
 ### getUsageDataForPlan
 Get usage data for a plan by plan id
-The frist date should be the start date for timeframe, the last date should be one day after the end of your timeframe.
+The first date should be the start date for timeframe, the last date should be one day after the end of your timeframe.
 
 ```javascript
 await gate.getUsageDataForPlan("planId","YYYY-MM-DD","YYYY-MM-DD")
@@ -108,7 +108,7 @@ await gate.getUsageDataForPlan("planId","YYYY-MM-DD","YYYY-MM-DD")
 
 ### getUsageDataForPlanByKey
 Get usage data for a plan and specific key by plan and key id
-The frist date should be the start date for timeframe, the last date should be one day after the end of your timeframe.
+The first date should be the start date for timeframe, the last date should be one day after the end of your timeframe.
 
 ```javascript
 await gate.getUsageDataForPlanByKey("planId","keyId","YYYY-MM-DD","YYYY-MM-DD")
