@@ -13,3 +13,4 @@ var config = {
 const gate = new UsagePlanManager(config);
 ```
 
+A full list of config variables can be found in the AWS docs under the [constructor property](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/APIGateway.html#constructor-property) section.
