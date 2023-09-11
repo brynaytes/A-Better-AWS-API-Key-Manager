@@ -9,8 +9,6 @@ env:
   AWS_DEFAULT_OUTPUT: json
 
 on:
-  push:
-    branches: [ "main", "workflow-fix" ]
   pull_request:
     branches: [ "main" ]
 
