@@ -121,5 +121,6 @@ await gate.getUsageDataForPlanByKey("planId","keyId","YYYY-MM-DD","YYYY-MM-DD")
 
 * Unsubscribe key from plan
 * Extend usage of key
+* Add more test cases
 
 
