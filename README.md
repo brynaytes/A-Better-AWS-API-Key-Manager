@@ -7,6 +7,8 @@ The goal of this package is to create functionality that is currently required t
 
 ## Example Client
 ```javascript
+const  UsagePlanManager  = require("the-missing-sdk-for-aws-api-gateway");
+
 var config = {
     region: 'us-east-1' //or whatever your region is 
 }
