@@ -5,6 +5,11 @@ The AWS SDK can be clunky, particularly when dealing with API keys, usage plans,
 
 The goal of this package is to create functionality that is currently required to be built manually by developers.
 
+## Install
+```
+npm i the-missing-sdk-for-aws-api-gateway
+```
+
 ## Example Client
 ```javascript
 const  UsagePlanManager  = require("the-missing-sdk-for-aws-api-gateway");
