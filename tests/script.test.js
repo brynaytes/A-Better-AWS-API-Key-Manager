@@ -1,4 +1,4 @@
-const  UsagePlanManager  = require("../lib/index.js");
+const  UsagePlanManager  = require("../index.js");
 let planManagerConfig = { 
     region: 'us-east-1'
 }
